@@ -1,23 +1,5 @@
 # kaleidocell
 
-**Scalable and interpretable identification of shared transcriptional programs
-across single-cell cohorts via consensus Non-negative Matrix Factorisation.**
-
-kaleidocell decomposes each sample in a cohort independently using NMF, then clusters
-the resulting gene programs by cosine similarity across all samples and ranks to
-derive **consensus meta-programs (MPs)** — reproducible transcriptional
-signatures shared across patients, conditions, or batches.
-
----
-
-## Key features
-
-- GPU-accelerated NMF via PyTorch (CUDA and Apple MPS supported)
-- Automatic consensus derivation with quality metrics per MP
-- Statistical filtering by cohort-level differential activity
-- GSEA with bundled MSigDB gene sets (Hallmarks, GO BP/CC/MF, C6–C9)
-- Self-contained HTML report with heatmap, UMAP, GSEA, gene tables, and violin plots
-
 ---
 
 ## Installation
@@ -284,21 +266,6 @@ cd docs && sphinx-build -b html . _build/html
 ```
 
 ---
-
-## Citation
-
-If you use kaleidocell in your research, please cite:
-
-> Radig J., Welz C. *et al.* (2025). kaleidocell: scalable identification of shared
-> transcriptional programs across single-cell cohorts via consensus NMF.
-> *[Journal, in preparation]*
-
----
-
-## Authors
-
-Jean Radig (<jean.radig@bioquant.uni-heidelberg.de>), Carla Welz
-Cherrmann Lab, BioQuant, Heidelberg University
 
 ## License
 
