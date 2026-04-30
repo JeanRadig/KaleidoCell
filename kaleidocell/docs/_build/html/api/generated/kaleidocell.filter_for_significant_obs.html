@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>kaleidocell.filter_for_significant_obs &#8212; kaleidocell 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/kaleidocell.filter_for_significant_obs';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="kaleidocell.drop_meta_programs" href="kaleidocell.drop_meta_programs.html" />
+    <link rel="prev" title="kaleidocell.filter_by_scores" href="kaleidocell.filter_by_scores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">kaleidocell 0.1.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../output_files.html">
+    Output files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../output_files.html">
+    Output files
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.multi_sample_nmf.html">kaleidocell.multi_sample_nmf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.derive_nmf_metaprograms.html">kaleidocell.derive_nmf_metaprograms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.get_metaprogram_metrics.html">kaleidocell.get_metaprogram_metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.compute_mp_scores.html">kaleidocell.compute_mp_scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.find_optimal_n_mp.html">kaleidocell.find_optimal_n_mp</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.filter_by_scores.html">kaleidocell.filter_by_scores</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">kaleidocell.filter_for_significant_obs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.drop_meta_programs.html">kaleidocell.drop_meta_programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.merge_meta_programs.html">kaleidocell.merge_meta_programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.propose_mp_actions.html">kaleidocell.propose_mp_actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.apply_mp_actions.html">kaleidocell.apply_mp_actions</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.run_gsea_pipeline.html">kaleidocell.run_gsea_pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.plot_gsea_results.html">kaleidocell.plot_gsea_results</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.plot_heatmap.html">kaleidocell.plot_heatmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.plot_convergence_plots.html">kaleidocell.plot_convergence_plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.plot_mp_scores_on_umap.html">kaleidocell.plot_mp_scores_on_umap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.show_distribution_over_obs.html">kaleidocell.show_distribution_over_obs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.recompute_pca_umap.html">kaleidocell.recompute_pca_umap</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.get_html.html">kaleidocell.get_html</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="kaleidocell.files.html">kaleidocell.files</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">kaleidocell.filter_for_significant_obs</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="kaleidocell-filter-for-significant-obs">
+<h1>kaleidocell.filter_for_significant_obs<a class="headerlink" href="#kaleidocell-filter-for-significant-obs" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="kaleidocell.filter_for_significant_obs">
+<span class="sig-prename descclassname"><span class="pre">kaleidocell.</span></span><span class="sig-name descname"><span class="pre">filter_for_significant_obs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mp_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mannwhitney'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fdr_bh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_permutations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_only_up_regulated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_ks_stat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_emd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emd_null_n_bootstrap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emd_null_percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">95.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/kaleidocell/consensus.html#filter_for_significant_obs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kaleidocell.filter_for_significant_obs" title="Link to this definition">#</a></dt>
+<dd><p>Keep only MPs whose scores differ significantly between one condition and the rest.</p>
+<p>For each meta-program, a two-sample statistical test is run comparing
+the module-score distribution of cells where
+<code class="docutils literal notranslate"><span class="pre">adata.obs[obs]</span> <span class="pre">==</span> <span class="pre">value</span></code> against all other cells.  Multiple-testing
+correction is applied across MPs and only those with a corrected
+p-value below <em>p_threshold</em> are retained.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result_dict</strong> (<em>dict</em>) – Output of <a class="reference internal" href="kaleidocell.derive_nmf_metaprograms.html#kaleidocell.derive_nmf_metaprograms" title="kaleidocell.derive_nmf_metaprograms"><code class="xref py py-func docutils literal notranslate"><span class="pre">derive_nmf_metaprograms()</span></code></a>.</p></li>
+<li><p><strong>mp_scores</strong> (<em>pd.DataFrame</em>) – Per-cell module scores from <a class="reference internal" href="kaleidocell.compute_mp_scores.html#kaleidocell.compute_mp_scores" title="kaleidocell.compute_mp_scores"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_mp_scores()</span></code></a>.
+Column names must follow the <code class="docutils literal notranslate"><span class="pre">&quot;MP1_score&quot;</span></code> convention.</p></li>
+<li><p><strong>adata</strong> (<em>AnnData</em>) – Dataset whose <code class="docutils literal notranslate"><span class="pre">obs</span></code> provides the grouping column.</p></li>
+<li><p><strong>obs</strong> (<em>str</em>) – Column in <code class="docutils literal notranslate"><span class="pre">adata.obs</span></code> defining the grouping
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;drug&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Treatment&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cluster&quot;</span></code>).</p></li>
+<li><p><strong>value</strong> (<em>str</em>) – The condition of interest within <em>obs</em>
+(e.g. <code class="docutils literal notranslate"><span class="pre">&quot;panobinostat&quot;</span></code>).  Tested against all other values.</p></li>
+<li><p><strong>test</strong> (<em>{&quot;mannwhitney&quot;</em><em>, </em><em>&quot;ttest&quot;</em><em>, </em><em>&quot;ks&quot;</em><em>, </em><em>&quot;permutation&quot;}</em><em>, </em><em>default &quot;mannwhitney&quot;</em>) – <p>Statistical test to use per MP.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;mannwhitney&quot;</span></code></dt><dd><p>Mann-Whitney U (Wilcoxon rank-sum).  Non-parametric; tests
+whether values in the <em>value</em> group are stochastically larger
+or smaller than the rest.  Standard choice for single-cell
+data — the same family of tests used by scanpy’s rank_genes
+approach.  More specific than KS because it only detects
+<em>location</em> shifts, not arbitrary distributional differences.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;ttest&quot;</span></code></dt><dd><p>Welch’s t-test (unequal variance).  Parametric; tests for a
+difference in means.  Fast; appropriate when groups are large
+enough for the Central Limit Theorem to apply (n &gt; ~30).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;ks&quot;</span></code></dt><dd><p>Two-sample Kolmogorov-Smirnov.  Non-parametric; sensitive to
+<em>any</em> difference in the two distributions (location, spread,
+shape).  Most permissive — will flag MPs that differ only in
+variance.  Useful as an exploratory screen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;permutation&quot;</span></code></dt><dd><p>Permutation test on the difference of means.  Distribution-
+free and exact.  Most conservative and rigorous, but slow for
+large datasets.  Number of permutations controlled by
+<em>n_permutations</em>.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>p_threshold</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Corrected p-value cutoff for retaining an MP.</p></li>
+<li><p><strong>correction</strong> (str, default <code class="docutils literal notranslate"><span class="pre">&quot;fdr_bh&quot;</span></code>) – Multiple-testing correction method for
+<code class="docutils literal notranslate"><span class="pre">statsmodels.stats.multitest.multipletests</span></code>.
+Options: <code class="docutils literal notranslate"><span class="pre">&quot;fdr_bh&quot;</span></code> (Benjamini-Hochberg), <code class="docutils literal notranslate"><span class="pre">&quot;bonferroni&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;fdr_by&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;holm&quot;</span></code>.</p></li>
+<li><p><strong>n_permutations</strong> (<em>int</em><em>, </em><em>default 999</em>) – Number of permutations for <code class="docutils literal notranslate"><span class="pre">test=&quot;permutation&quot;</span></code> only.</p></li>
+<li><p><strong>show_only_up_regulated</strong> (<em>bool</em><em>, </em><em>default False</em>) – If <em>True</em>, apply an additional filter on top of significance: keep
+only MPs whose mean score in the <em>value</em> group is <strong>higher</strong> than the
+mean score in the rest group.  MPs that are significantly
+down-regulated in <em>value</em> are dropped.</p></li>
+<li><p><strong>min_ks_stat</strong> (<em>float</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Minimum KS statistic required to retain an MP, applied <strong>on top of</strong>
+the significance filter.  The KS statistic measures the maximum
+absolute difference between the two empirical CDFs; a value of 0.20
+means the distributions differ by at most 20 percentage points at the
+worst-case score threshold.  Values below ~0.20 are often negligible
+even when p-values are small.  Set to <code class="docutils literal notranslate"><span class="pre">None</span></code> to skip this filter.</p></li>
+<li><p><strong>min_emd</strong> (<em>float</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Minimum Earth Mover’s Distance (Wasserstein-1) required to retain an
+MP.  EMD measures how much “mass” must be moved to transform one score
+distribution into the other, in the units of the score axis.  Set to
+<code class="docutils literal notranslate"><span class="pre">None</span></code> to skip.  When <em>emd_null_n_bootstrap</em> is also set, the
+effective threshold is <code class="docutils literal notranslate"><span class="pre">max(min_emd,</span> <span class="pre">emd_null_threshold)</span></code>; when only
+<em>min_emd</em> is set, the raw EMD is compared directly.</p></li>
+<li><p><strong>emd_null_n_bootstrap</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – If given, calibrate a per-MP null EMD threshold by bootstrapping
+within the <em>rest</em> group: draw <code class="docutils literal notranslate"><span class="pre">emd_null_n_bootstrap</span></code> pairs of
+random subsets of size <code class="docutils literal notranslate"><span class="pre">n_condition</span></code> from the rest group and compute
+the EMD between each pair.  The threshold is the
+<code class="docutils literal notranslate"><span class="pre">emd_null_percentile</span></code>-th percentile of these null EMDs.  This
+accounts for the baseline variability you would expect even if the
+treatment had no effect, and provides a data-driven threshold for
+<em>min_emd</em>.  Implies computing EMD even if <em>min_emd</em> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>emd_null_percentile</strong> (<em>float</em><em>, </em><em>default 95</em>) – Percentile of the bootstrap null distribution used as the EMD
+threshold when <em>emd_null_n_bootstrap</em> is set.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em><em>, </em><em>default True</em>) – Print a per-MP summary table, the list of MPs to drop, and a
+ready-to-run <code class="docutils literal notranslate"><span class="pre">drop_meta_programs</span></code> call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>to_drop</strong> (<em>list of str</em>) – Names of the MPs that did not pass the filter.</p></li>
+<li><p><strong>result_dict_filtered</strong> (<em>dict</em>) – Deep copy of <em>result_dict</em> with the non-significant (and, when
+<em>show_only_up_regulated</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, down-regulated) MPs removed.
+The original <em>result_dict</em> is <strong>not modified</strong>.</p></li>
+<li><p><strong>stats</strong> (<em>pd.DataFrame</em>) – One row per MP with columns <code class="docutils literal notranslate"><span class="pre">statistic</span></code>, <code class="docutils literal notranslate"><span class="pre">pvalue</span></code>,
+<code class="docutils literal notranslate"><span class="pre">pvalue_corrected</span></code>, <code class="docutils literal notranslate"><span class="pre">significant</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_condition</span></code>,
+<code class="docutils literal notranslate"><span class="pre">mean_rest</span></code>, <code class="docutils literal notranslate"><span class="pre">up_regulated</span></code>, <code class="docutils literal notranslate"><span class="pre">n_condition</span></code>, <code class="docutils literal notranslate"><span class="pre">n_rest</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ks_stat</span></code>, <code class="docutils literal notranslate"><span class="pre">emd</span></code>, and (when <em>emd_null_n_bootstrap</em> is set)
+<code class="docutils literal notranslate"><span class="pre">emd_null_threshold</span></code>.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[list, dict, <em>DataFrame</em>]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Default — Mann-Whitney U with BH correction:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_drop</span><span class="p">,</span> <span class="n">results_mp_filt</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">filter_for_significant_obs</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">results_mp</span><span class="p">,</span> <span class="n">mp_scores</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">obs</span><span class="o">=</span><span class="s1">&#39;drug&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;panobinostat&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># apply manually after inspecting the list:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results_mp</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">drop_meta_programs</span><span class="p">(</span><span class="n">results_mp</span><span class="p">,</span> <span class="n">to_drop</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Stricter — Welch’s t-test with Bonferroni correction:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_drop</span><span class="p">,</span> <span class="n">results_mp_filt</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">filter_for_significant_obs</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">results_mp</span><span class="p">,</span> <span class="n">mp_scores</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">obs</span><span class="o">=</span><span class="s1">&#39;drug&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;panobinostat&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">=</span><span class="s1">&#39;ttest&#39;</span><span class="p">,</span> <span class="n">correction</span><span class="o">=</span><span class="s1">&#39;bonferroni&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Most rigorous — permutation test:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_drop</span><span class="p">,</span> <span class="n">results_mp_filt</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">filter_for_significant_obs</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">results_mp</span><span class="p">,</span> <span class="n">mp_scores</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">obs</span><span class="o">=</span><span class="s1">&#39;drug&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;panobinostat&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">test</span><span class="o">=</span><span class="s1">&#39;permutation&#39;</span><span class="p">,</span> <span class="n">n_permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Significant <em>and</em> up-regulated in the selected condition:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_drop</span><span class="p">,</span> <span class="n">results_mp_filt</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">filter_for_significant_obs</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">results_mp</span><span class="p">,</span> <span class="n">mp_scores</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">obs</span><span class="o">=</span><span class="s1">&#39;drug&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;panobinostat&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">show_only_up_regulated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add KS effect-size filter (keep only MPs with KS ≥ 0.20):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_drop</span><span class="p">,</span> <span class="n">results_mp_filt</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">filter_for_significant_obs</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">results_mp</span><span class="p">,</span> <span class="n">mp_scores</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">obs</span><span class="o">=</span><span class="s1">&#39;drug&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;panobinostat&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">min_ks_stat</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bootstrap-calibrated EMD filter (null from 500 bootstrap pairs):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_drop</span><span class="p">,</span> <span class="n">results_mp_filt</span><span class="p">,</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">kaleidocell</span><span class="o">.</span><span class="n">filter_for_significant_obs</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">results_mp</span><span class="p">,</span> <span class="n">mp_scores</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">obs</span><span class="o">=</span><span class="s1">&#39;drug&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;panobinostat&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">emd_null_n_bootstrap</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="kaleidocell.filter_by_scores.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">kaleidocell.filter_by_scores</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="kaleidocell.drop_meta_programs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">kaleidocell.drop_meta_programs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaleidocell.filter_for_significant_obs"><code class="docutils literal notranslate"><span class="pre">filter_for_significant_obs()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/api/generated/kaleidocell.filter_for_significant_obs.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
