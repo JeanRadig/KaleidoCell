@@ -72,10 +72,14 @@ ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 conda create -p "$ENV_DIR" python=3.11 -y
 conda activate "$ENV_DIR"
 
-# 4. Install GPU-enabled PyTorch — match the tag to your driver
-#    Run `nvidia-smi` to check your CUDA version.
-#    cu124 → CUDA 12.4 | cu121 → CUDA 12.1 | cu118 → CUDA 11.8
+# 4.1 LINUX — Install GPU-enabled PyTorch
+#     Run `nvidia-smi` to check your CUDA version.
+#     cu124 → CUDA 12.4 | cu121 → CUDA 12.1 | cu118 → CUDA 11.8
 pip install torch --index-url https://download.pytorch.org/whl/cu124
+
+# 4.2 MAC — Install PyTorch with MPS (Metal Performance Shaders) support
+#     No CUDA needed — GPU acceleration is provided natively via Apple Silicon.
+pip install torch
 
 # 5. Install KaleidoCell
 cd "$PROJECT_DIR"
