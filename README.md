@@ -29,7 +29,7 @@ resolves into clear, recurring patterns at the cohort level.
 ## Material
 |Folder | Description|
 |------|---------|
-|comparison| Files necessary to run the geneNMF vs. kaleidoCell comparison|
+|comparison| Files necessary to run the geneNMF vs. kaleidoCell runtime comparison|
 |data| Mock data to run the example notebooks|
 |examples| Example notebooks on how to use kaleidoCell|
 |kaleidocell| Source code|
