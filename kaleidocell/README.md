@@ -4,20 +4,18 @@
 
 ## Installation
 
-### Prerequisites
-
-- [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda
-
 ---
 
 ### Option A — Installation using conda
+
+- Prerequisite: [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda
 
 ```bash
 # Initialize conda (only needed if not already in your shell)
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
-# Define paths (edit these)
-PROJECT_DIR=/path/to/kaleidocell
+# Edit the PROJECT_DIR path such that it points to KaleidoCell/kaleidocell
+PROJECT_DIR=/path/to/KaleidoCell/kaleidocell
 ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 
 # Create environment in the same folder as your project (remove -p and path if you want it at your conda place)
@@ -41,14 +39,14 @@ python -m ipykernel install --user --name=kaleidocell_env --display-name "kaleid
 
 ---
 
-### Option B — Linux / HPC via environment.yml
+### Option B — installation using conda via environment.yml
 
 ```bash
 # Initialize conda
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
-# Define paths
-PROJECT_DIR=/path/to/kaleidocell
+# Edit the PROJECT_DIR path such that it points to KaleidoCell/kaleidocell
+PROJECT_DIR=/path/to/KaleidoCell/kaleidocell
 ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 
 cd "$PROJECT_DIR"
@@ -78,8 +76,8 @@ PyTorch ships with MPS (Metal Performance Shaders) support out of the box — no
 # Initialize conda (if not already active in your shell)
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
-# Define paths (edit these)
-PROJECT_DIR=/path/to/kaleidoCell/kaleidocell
+# Edit the PROJECT_DIR path such that it points to KaleidoCell/kaleidocell
+PROJECT_DIR=/path/to/KaleidoCell/kaleidocell
 ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 
 # Create environment
@@ -115,18 +113,17 @@ A pre-built image with all dependencies is available on Docker Hub. Please note 
 # Pull the image
 docker pull hdsu/kaleidocell_env:latest
 
-# Run interactively — mount your data directory into /workspace/data
+# Run interactively — mount your KaleidoCell folder into /workspace/KaleidoCell
 docker run --gpus all -it --rm \
-    -v /path/to/your/data:/workspace/data \
+    -v /path/to/KaleidoCell:/workspace/KaleidoCell \
     hdsu/kaleidocell_env:latest
 
 # Run Jupyter Lab and open the quickstart example (open http://localhost:8888 in your browser)
 docker run --gpus all -it --rm \
-    -v /path/to/your/data:/workspace/data \
-    -v /path/to/kaleidocell_v1/examples:/workspace/examples \
+    -v /path/to/KaleidoCell:/workspace/KaleidoCell \
     -p 8888:8888 \
     hdsu/kaleidocell_env:latest \
-    jupyter lab --ip=0.0.0.0 --no-browser --allow-root /workspace/examples/01_quickstart.ipynb
+    jupyter lab --ip=0.0.0.0 --no-browser --allow-root /workspace/KaleidoCell/examples/01_quickstart.ipynb
 ```
 
 ---
@@ -180,93 +177,3 @@ print("MPS: ", torch.backends.mps.is_available())
 ```
 
 ---
-
-## Quick start
-
-```python
-import kaleidocell
-import scanpy as sc
-
-adata = sc.read_h5ad("your_data.h5ad")
-
-# 1. Run NMF on every sample
-results_nmf, _ = kaleidocell.multi_sample_nmf(
-    adata,
-    batch_key="sample" # Replace this with the obs of interest!
-)
-
-# 2. Derive consensus meta-programs
-results_mp = kaleidocell.derive_nmf_metaprograms(results_nmf)
-
-# 3. Score cells
-mp_scores = kaleidocell.compute_mp_scores(results_mp, adata)
-
-# 4. Generate HTML report
-kaleidocell.get_html(
-    results_mp, adata,
-    mp_scores=mp_scores,
-    obs=["Treatment", "donor"], # Replace this with obs of interest.
-    output_path="results/",
-)
-```
-
----
-
-## Output files produced by `get_html`
-
-All files are written to the same directory as the HTML file.
-
-| File | Description | Always written |
-|------|-------------|:--------------:|
-| `results.html` | Self-contained tabbed HTML report | ✓ |
-| `genes.csv` | Long-format gene table: `gene`, `mp`, `score` | ✓ |
-| `heatmap.pdf` | Cosine-similarity matrix | ✓ |
-| `umap_scores.pdf` | MP scores on UMAP | requires `mp_scores` |
-| `gsea_{label}.csv` | Significant GSEA terms per GMT file | when GSEA finds results |
-| `gsea_{label}_{MP}.pdf` | GSEA bar plot per MP per GMT file | when GSEA finds results |
-| `violins_{obs_key}.pdf` | Violin plots per MP per obs key | requires `obs` |
-
----
-
-## Bundled gene-set files
-
-```python
-import kaleidocell
-print(kaleidocell.files)   # lists all bundled files with descriptions
-```
-
-| File | Content |
-|------|---------|
-| `h.all.v2026.1.Hs.symbols.gmt` | MSigDB Hallmarks (50 gene sets) |
-| `c5.go.bp.v2026.1.Hs.symbols.gmt` | GO Biological Process |
-| `c5.go.cc.v2026.1.Hs.symbols.gmt` | GO Cellular Component |
-| `c5.go.mf.v2026.1.Hs.symbols.gmt` | GO Molecular Function |
-| `c6.all.v2026.1.Hs.symbols.gmt` | Oncogenic signatures |
-| `c7.all.v2026.1.Hs.symbols.gmt` | Immunologic signatures |
-| `c8.all.v2026.1.Hs.symbols.gmt` | Cell type signatures |
-| `c9.all.v2026.1.Hs.symbols.gmt` | Cancer gene sets |
-| `hgnc_ensembl_translation.txt` | Ensembl ↔ HGNC symbol table |
-
-Short filenames are resolved automatically — no path needed:
-
-```python
-kaleidocell.run_gsea_pipeline(results_mp, from_file=["h.all.v2026.1.Hs.symbols.gmt"])
-```
-
----
-
-## Documentation
-
-Build locally:
-
-```bash
-pip install sphinx pydata-sphinx-theme nbsphinx pandoc
-cd docs && sphinx-build -b html . _build/html
-# open docs/_build/html/index.html
-```
-
----
-
-## License
-
-MIT
