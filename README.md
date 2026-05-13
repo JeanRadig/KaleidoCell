@@ -18,7 +18,7 @@
 
 KaleidoCell decomposes each sample in a cohort independently using NMF, then clusters
 the resulting gene programs by cosine similarity across all samples and ranks to
-derive **consensus meta-programs (MPs)** — reproducible transcriptional signatures
+derive **meta-programs (MPs)** — reproducible transcriptional signatures
 shared across patients, conditions, or batches. KaleidoCell builds up on works like [cNMF](https://github.com/dylkot/cNMF) and [geneNMF](https://github.com/carmonalab/GeneNMF). 
 
 Like looking through a kaleidoscope, what appears complex and noisy in individual samples
