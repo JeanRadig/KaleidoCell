@@ -12,6 +12,9 @@
   <img src="https://img.shields.io/badge/PyTorch-GPU%20accelerated-ee4c2c?logo=pytorch&logoColor=white"/>
   <img src="https://img.shields.io/badge/license-MIT-green"/>
   <img src="https://img.shields.io/badge/status-in%20development-orange"/>
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=JeanRadig.KaleidoCell"/>
+  <img src="https://img.shields.io/docker/pulls/hdsu/kaleidocell_env"/>
+  <img src="https://img.shields.io/github/stars/JeanRadig/KaleidoCell?style=social"/>
 </p>
 
 ---
@@ -119,9 +122,9 @@ import scanpy as sc
 # ── Load data ──────────────────────────────────────────────────────────────
 # AnnData with log-normalised counts in .X
 # adata.obs must contain a column identifying individual samples / patients
-adata = sc.read_h5ad("cohort.h5ad")
+adata = sc.read_h5ad("../data/petersims_example.h5ad")
 print(adata)
-# AnnData object with n_obs × n_vars = 15 062 × 18 349
+# AnnData object with n_obs × n_vars = 7 000 × 7 000
 #     obs: 'Patients', 'Treatment', 'cell_type'
 
 # ── Step 1 · Run NMF on every sample ──────────────────────────────────────
