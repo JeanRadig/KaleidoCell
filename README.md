@@ -39,7 +39,7 @@ resolves into clear, recurring patterns at the cohort level.
 ## Key features
 
 - **GPU-accelerated NMF** via PyTorch — CUDA (Linux/HPC) and Apple MPS (M1/M2/M3) supported
-- **Guided biologically relevant meta-programs derivation** with quality metrics per meta-program (silhouette, sample coverage, mean similarity)
+- **Guided biologically relevant meta-programs derivation** with quality metrics per meta-program and integrated analysis/visualisation functions
 - **GSEA** with bundled MSigDB gene sets (Hallmarks, GO BP/CC/MF, C6–C9)
 - **Self-contained HTML report** with heatmap, UMAP, GSEA results, gene tables, and violin plots — no external dependencies to open it
 
@@ -105,12 +105,12 @@ print("Device name:  ", torch.cuda.get_device_name())
 
 ### Other options: see documentation
 
-For other installation possibilites, in particular for compatibility with Mac, and for docker installation, please follow the installation instructions in `KaleidoCell/kaleidocell/README.md`.
+For other installation possibilites, in particular for docker installation or usage on Mac, please follow the installation instructions in `KaleidoCell/kaleidocell/README.md`.
 
 ## Quick start
 
 The minimal workflow runs in four steps.
-A complete walkthrough with explanations is in [`examples/01_quickstart.ipynb`](examples/01_quickstart.ipynb).
+A complete walkthrough with explanations is in [`examples/01_quickstart.ipynb`](examples/01_quickstart.ipynb). Other tutorials are also available in the same folder. 
 
 ```python
 import kaleidocell
