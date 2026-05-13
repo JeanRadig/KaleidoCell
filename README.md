@@ -26,6 +26,16 @@ resolves into clear, recurring patterns at the cohort level.
 
 ---
 
+## Material
+|Folder | Description|
+|------|---------|
+|comparison| Files necessary to run the geneNMF vs. kaleidoCell comparison|
+|data| Mock data to run the example notebooks|
+|examples| Example notebooks on how to use kaleidoCell|
+|kaleidocell| Source code|
+
+---
+
 ## Key features
 
 - **GPU-accelerated NMF** via PyTorch — CUDA (Linux/HPC) and Apple MPS (M1/M2/M3) supported
@@ -43,16 +53,16 @@ resolves into clear, recurring patterns at the cohort level.
 
 ## Installation
 
-### Option A — Linux / HPC server (GPU, CUDA)
+Usage of kaleidoCell on larger datasets (more than 10,000 cells) is not recommended on a personal computer, because of long runtime. We recommend using the tool on a high-performance computing machine.
 
-Recommended for clusters and workstations with an NVIDIA GPU.
+### Using conda
 
 ```bash
 # 1. Initialise conda (if not already active in your shell)
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
-# 2. Set paths  (edit PROJECT_DIR to point at your clone of this repo)
-PROJECT_DIR=/path/to/kaleidocell
+# 2. Set paths  (edit PROJECT_DIR to point at the kaleidocell folder inside your clone of this repo)
+PROJECT_DIR=/path/to/KaleidoCell/kaleidocell
 ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 
 # 3. Create environment
@@ -92,35 +102,10 @@ print("Device name:  ", torch.cuda.get_device_name())
 
 ---
 
-### Option B — Docker (terminal) - CUDA 12.4
-
-A pre-built Docker image with all dependencies (including GPU support) is available
-on Docker Hub — no conda required.
-
-```bash
-# Pull the image
-docker pull hdsu/kaleidocell_env:latest
-
-# Interactive shell — mount your data into /workspace/data
-docker run --gpus all -it --rm \
-    -v /path/to/your/data:/workspace/data \
-    hdsu/kaleidocell_env:latest
-
-# Run Jupyter Notebook (open http://localhost:8888 in your browser)
-docker run --gpus all -it --rm \
-    -v /path/to/your/data:/workspace/data \
-    -p 8888:8888 \
-    hdsu/kaleidocell_env:latest \
-    jupyter notebook --ip=0.0.0.0 --no-browser --allow-root \
-                     --notebook-dir=/workspace/data
-```
-
-> **No GPU?** Drop `--gpus all` from the command — KaleidoCell will fall back to CPU automatically. Warning, the script is optimised for GPU. The runtime on CPU can be prohibitively long. 
-> **Want to create your own docker?** In kaleidocell/docker/README.md you will find the code used to create this docker. You can adapt it to your CUDA version and to download other packages.
-
----
 
 ### Other options: see documentation
+
+For other installation possibilites, in particular for compatibility with Mac, and for docker installation, please follow the installation instructions in `KaleidoCell/kaleidocell/README.md`.
 
 ## Quick start
 
@@ -258,8 +243,8 @@ cd docs && sphinx-build -b html . _build/html
 
 If you use KaleidoCell in your research, please cite:
 
-> Radig J., Welz C., Ostheimer P. S., Balinskyy A., Kloft M., Fellenz S., Herrmann C. (2026). kaleidoCell: A Python Package to Identify Single-Cell Meta-Programs Identifies Treatment Related Signatures In Glioblastoma
-> *[Journal, in preparation]*
+> Radig J., Welz C., Jerome M., Ostheimer P. S., Fellenz S., Radlwimmer B., Herrmann C. (2026). Identifying Treatment Related Signatures In Glioblastoma Using KaleidoCell.
+> *bioRxiv*
 
 ---
 
@@ -270,4 +255,4 @@ cromLab · AG Herrmann · IPMB · BioQuant · Heidelberg University
 
 ## License
 
-[MIT](LICENSE)
+MIT

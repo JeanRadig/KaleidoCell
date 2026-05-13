@@ -10,7 +10,7 @@
 
 ---
 
-### Option A — Linux / HPC server (GPU, CUDA 12.4)
+### Option A — Installation using conda
 
 ```bash
 # Initialize conda (only needed if not already in your shell)
@@ -72,15 +72,14 @@ conda activate "$ENV_DIR"
 
 ### Option C — Mac (Apple Silicon M1/M2/M3)
 
-PyTorch ships with MPS (Metal Performance Shaders) support out of the box —
-no separate CUDA wheel is needed.
+PyTorch ships with MPS (Metal Performance Shaders) support out of the box — no separate CUDA wheel is needed. Please note that GPU-acceleration on Mac is only twice as fast as CPU support. We do not recommend running KaleidoCell on Mac. Usage of a high-performance computing machine is recommended. This installation has been tested on a MacBook Pro with Apple M2 Pro chip, 10 cores, and 16 GB of memory.
 
 ```bash
 # Initialize conda (if not already active in your shell)
 source "$(conda info --base)/etc/profile.d/conda.sh"
 
 # Define paths (edit these)
-PROJECT_DIR=/path/to/kaleidocell
+PROJECT_DIR=/path/to/kaleidoCell/kaleidocell
 ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 
 # Create environment
@@ -110,7 +109,7 @@ conda activate "$ENV_DIR"
 
 ### Option D — Docker (terminal)
 
-A pre-built image with all dependencies is available on Docker Hub.
+A pre-built image with all dependencies is available on Docker Hub. Please note that this installation has been tested on Linux x86_64 systems with NVIDIA GPU support (CUDA 12.4), and usage on Mac or personal computers is not recommended.
 
 ```bash
 # Pull the image
@@ -121,12 +120,13 @@ docker run --gpus all -it --rm \
     -v /path/to/your/data:/workspace/data \
     hdsu/kaleidocell_env:latest
 
-# Run Jupyter Notebook (open http://localhost:8888 in your browser)
+# Run Jupyter Lab and open the quickstart example (open http://localhost:8888 in your browser)
 docker run --gpus all -it --rm \
     -v /path/to/your/data:/workspace/data \
+    -v /path/to/kaleidocell_v1/examples:/workspace/examples \
     -p 8888:8888 \
     hdsu/kaleidocell_env:latest \
-    jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --notebook-dir=/workspace/data
+    jupyter lab --ip=0.0.0.0 --no-browser --allow-root /workspace/examples/01_quickstart.ipynb
 ```
 
 ---
@@ -134,7 +134,7 @@ docker run --gpus all -it --rm \
 ### Option E — Docker (VS Code Dev Container)
 
 Dev Containers let you open the project inside the Docker image directly from
-VS Code with full IntelliSense, debugging, and Jupyter support.
+VS Code with full IntelliSense, debugging, and Jupyter support. Please note that this installation has been tested on Linux x86_64 systems with NVIDIA GPU support (CUDA 12.4), and usage on Mac or personal computers is not recommended.
 
 1. Install the
    [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)

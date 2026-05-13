@@ -1,10 +1,26 @@
 # Dockerfile used to create the docker
 
+To create/adapt the docker, you need can adapt the following Dockerfile. You need to have a folder containing both the Dockerfile and the kaleidocell folder (KaleidoCell/kaleidocell), as it is going to be copy-pasted to the docker for within-docker installation. You should have following structure before building the docker:
+
+- kaleidocell_env
+    - Dockerfile 
+    - kaleidocell
+
+Then, you can run following commands to build the docker from scratch:
+
+```python
+cd path/to/kaleidocell_env
+docker build -t kaleidocell_env .
+```
+
+Please find the Dockerfile below.
+
+### Dockerfile
+
 ```python 
 # Base image with Conda
 FROM continuumio/miniconda3
 
-# Set the working directory inside the container
 WORKDIR /workspace
 
 RUN apt-get update && \
@@ -14,7 +30,6 @@ RUN apt-get update && \
     htop \
     less \
     tmux
-
 
 # Create the Conda environment with Python 3.10
 RUN conda create -n kaleidocell python=3.10 -y && \
@@ -40,7 +55,17 @@ RUN /bin/bash -c "source ~/.bashrc && \
         ipykernel==7.2.0 \
         neptune==1.14.0 \
         fastcluster==1.2.6 \
+        jupyterlab \
+        gseapy \
+        statsmodels \
+        tqdm \
         "
+
+# Copy kaleidocell source and install it (baked into the conda env)
+COPY kaleidocell /opt/kaleidocell
+RUN /bin/bash -c "source ~/.bashrc && \
+    conda activate kaleidocell && \
+    pip install /opt/kaleidocell"
 
 # Register the environment as a Jupyter kernel
 RUN /bin/bash -c "source ~/.bashrc && \
@@ -49,7 +74,7 @@ RUN /bin/bash -c "source ~/.bashrc && \
 
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
+EXPOSE 8888
 
-# Set the default command
 CMD ["/bin/bash"]
 ```
