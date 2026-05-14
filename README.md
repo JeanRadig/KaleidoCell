@@ -69,8 +69,8 @@ PROJECT_DIR=/path/to/KaleidoCell/kaleidocell
 ENV_DIR=$PROJECT_DIR/.environments/kaleidocell_env
 
 # 3. Create environment
-conda create -p "$ENV_DIR" python=3.11 -y
-conda activate "$ENV_DIR"
+conda create -n kaleidocell -p "$ENV_DIR" python=3.11 -y
+conda activate kaleidocell
 
 # 4.1 LINUX — Install GPU-enabled PyTorch
 #     Run `nvidia-smi` to check your CUDA version.
@@ -96,7 +96,7 @@ python -m ipykernel install --user \
 
 ```bash
 source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate /path/to/kaleidocell/.environments/kaleidocell_env
+conda activate kaleidocell
 ```
 
 **Verify GPU is visible:**
