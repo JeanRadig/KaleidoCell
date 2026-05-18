@@ -193,7 +193,12 @@ def _run_enrichr(genes: list, gene_sets: list, organism: str = "human"):
     try:
         import gseapy as gp
         enr = gp.enrichr(gene_list=genes, gene_sets=gene_sets, organism=organism, outdir=None)
-        return enr.results
+        result = enr.results
+        if isinstance(result, list):
+            if not result:
+                return None
+            result = pd.concat(result, ignore_index=True)
+        return result
     except Exception as exc:
         print(f"Enrichr call failed: {exc}")
         return None
