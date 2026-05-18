@@ -15,6 +15,9 @@
   <img src="https://visitor-badge.laobi.icu/badge?page_id=JeanRadig.KaleidoCell"/>
   <img src="https://img.shields.io/docker/pulls/hdsu/kaleidocell_env"/>
   <img src="https://img.shields.io/github/stars/JeanRadig/KaleidoCell?style=social"/>
+  <a href="https://www.biorxiv.org/content/10.64898/2026.05.13.724848v1.article-metrics">
+    <img src="https://img.shields.io/badge/preprint-bioRxiv-b31b1b?logo=biorxiv&logoColor=white"/>
+  </a>
 </p>
 
 ---
@@ -252,6 +255,8 @@ If you use KaleidoCell in your research, please cite:
 
 > Radig J., Welz C., Jerome M., Ostheimer P. S., Fellenz S., Radlwimmer B., Herrmann C. (2026). Identifying Treatment Related Signatures In Glioblastoma Using KaleidoCell.
 > *bioRxiv*
+
+[KaleidoCell preprint](https://www.biorxiv.org/content/10.64898/2026.05.13.724848v1.article-metrics)
 
 ---
 
