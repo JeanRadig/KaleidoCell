@@ -18,6 +18,9 @@
   <a href="https://www.biorxiv.org/content/10.64898/2026.05.13.724848v1.article-metrics">
     <img src="https://img.shields.io/badge/preprint-bioRxiv-b31b1b?logo=biorxiv&logoColor=white"/>
   </a>
+  <a href="https://kaleidocell.readthedocs.io/en/latest/index.html">
+    <img src="https://img.shields.io/badge/docs-readthedocs-blue?logo=readthedocs&logoColor=white"/>
+  </a>
 </p>
 
 ---
@@ -238,6 +241,8 @@ kaleidocell.run_gsea_pipeline(results_mp, from_file=["h.all.v2026.1.Hs.symbols.g
 ---
 
 ## Documentation
+
+For more information, see the [online documentation](https://kaleidocell.readthedocs.io/en/latest/index.html).
 
 Build locally:
 
