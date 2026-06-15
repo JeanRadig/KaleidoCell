@@ -41,3 +41,6 @@ html_theme_options = {
 nbsphinx_execute = "never"
 
 exclude_patterns = ["_build", "**.ipynb_checkpoints"]
+
+# torch is GPU-heavy and unavailable on ReadTheDocs builders
+autodoc_mock_imports = ["torch"]
