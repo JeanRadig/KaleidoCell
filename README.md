@@ -67,6 +67,16 @@ Usage of kaleidoCell on larger datasets (more than 10,000 cells) is not recommen
 
 ### Via pip
 
+> **GPU users:** install PyTorch with the CUDA wheel **before** kaleidocell, otherwise pip will pull in a CPU-only torch automatically.
+
+```bash
+# Replace cu124 with your CUDA version (run nvidia-smi to check: cu124 = 12.4, cu121 = 12.1, cu118 = 11.8)
+pip install torch --index-url https://download.pytorch.org/whl/cu124
+pip install kaleidocell
+```
+
+**CPU / Mac users:**
+
 ```bash
 pip install kaleidocell
 ```
