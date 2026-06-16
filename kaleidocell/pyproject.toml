@@ -4,11 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kaleidocell"
-version = "0.1.0"
+version = "0.1.1"
 description = "Scalable and interpretable identification of shared transcriptional programs across single-cell cohorts via consensus NMF."
 readme = "README.md"
 authors = [
     {name = "Jean Radig",  email = "jean.radig@bioquant.uni-heidelberg.de"},
+]
+maintainers = [
+    {name = "Jean Radig", email = "jean.radig@bioquant.uni-heidelberg.de"},
     {name = "Carla Welz"},
 ]
 license = {text = "MIT"}
