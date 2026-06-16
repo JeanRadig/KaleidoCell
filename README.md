@@ -64,6 +64,12 @@ resolves into clear, recurring patterns at the cohort level.
 
 Usage of kaleidoCell on larger datasets (more than 10,000 cells) is not recommended on a personal computer, because of long runtime. We recommend using the tool on a high-performance computing machine.
 
+### Via pip
+
+```bash
+pip install kaleidocell
+```
+
 ### Using conda
 
 ```bash

@@ -6,7 +6,13 @@
 
 ---
 
-### Option A — Installation using conda
+### Option A - Via pip
+
+```bash
+pip install kaleidocell
+```
+
+### Option B — Installation using conda
 
 - Prerequisite: [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or Anaconda
 
@@ -39,7 +45,7 @@ python -m ipykernel install --user --name=kaleidocell_env --display-name "kaleid
 
 ---
 
-### Option B — installation using conda via environment.yml
+### Option C — installation using conda via environment.yml
 
 ```bash
 # Initialize conda
@@ -68,7 +74,7 @@ conda activate "$ENV_DIR"
 
 ---
 
-### Option C — Mac (Apple Silicon M1/M2/M3)
+### Option D — Mac (Apple Silicon M1/M2/M3)
 
 PyTorch ships with MPS (Metal Performance Shaders) support out of the box — no separate CUDA wheel is needed. Please note that GPU-acceleration on Mac is only twice as fast as CPU support. We do not recommend running KaleidoCell on Mac. Usage of a high-performance computing machine is recommended. This installation has been tested on a MacBook Pro with Apple M2 Pro chip, 10 cores, and 16 GB of memory.
 
@@ -105,7 +111,7 @@ conda activate "$ENV_DIR"
 
 ---
 
-### Option D — Docker (terminal)
+### Option E — Docker (terminal)
 
 A pre-built image with all dependencies is available on Docker Hub. Please note that this installation has been tested on Linux x86_64 systems with NVIDIA GPU support (CUDA 12.4), and usage on Mac or personal computers is not recommended.
 
@@ -128,7 +134,7 @@ docker run --gpus all -it --rm \
 
 ---
 
-### Option E — Docker (VS Code Dev Container)
+### Option F — Docker (VS Code Dev Container)
 
 Dev Containers let you open the project inside the Docker image directly from
 VS Code with full IntelliSense, debugging, and Jupyter support. Please note that this installation has been tested on Linux x86_64 systems with NVIDIA GPU support (CUDA 12.4), and usage on Mac or personal computers is not recommended.

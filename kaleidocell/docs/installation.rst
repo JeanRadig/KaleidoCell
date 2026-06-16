@@ -1,6 +1,22 @@
 Installation
 ============
 
+Quick install via pip
+---------------------
+
+.. code-block:: bash
+
+   pip install kaleidocell
+
+For GPU acceleration (Linux/HPC), install PyTorch with the appropriate CUDA
+wheel **before** installing kaleidocell:
+
+.. code-block:: bash
+
+   # Replace cu124 with your CUDA version (run nvidia-smi to check)
+   pip install torch --index-url https://download.pytorch.org/whl/cu124
+   pip install kaleidocell
+
 Prerequisites
 -------------
 
