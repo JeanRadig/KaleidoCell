@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kaleidocell"
-version = "0.1.1"
+version = "0.1.2"
 description = "Scalable and interpretable identification of shared transcriptional programs across single-cell cohorts via consensus NMF."
 readme = "README.md"
 authors = [

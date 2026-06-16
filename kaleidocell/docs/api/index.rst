@@ -57,6 +57,27 @@ Visualisation
    show_distribution_over_obs
    recompute_pca_umap
 
+Gene-name translation
+---------------------
+
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
+   :template: function.rst
+
+   translate_gene_names
+
+Persistence
+-----------
+
+.. autosummary::
+   :toctree: generated
+   :nosignatures:
+   :template: function.rst
+
+   save
+   load
+
 Report
 ------
 

@@ -20,7 +20,7 @@ kaleidocell.report         — HTML report generation.
 kaleidocell.files          — bundled GMT and reference files.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.2"
 __author__ = "Jean Radig, Carla Welz"
 __email__ = "jean.radig@bioquant.uni-heidelberg.de"
 
@@ -37,6 +37,7 @@ from .consensus import (
     filter_by_scores,
     filter_for_significant_obs,
     find_optimal_n_mp,
+    translate_gene_names,
 )
 
 # --- Report ---
@@ -47,6 +48,9 @@ from .gsea import run_gsea_pipeline, plot_gsea_results
 
 # --- Bundled files ---
 from ._bundled import files
+
+# --- I/O ---
+from .io import save, load
 
 # --- Visualisation ---
 from .visualization import (
@@ -70,6 +74,7 @@ __all__ = [
     "filter_by_scores",
     "filter_for_significant_obs",
     "find_optimal_n_mp",
+    "translate_gene_names",
     # report
     "get_html",
     # gsea
@@ -77,6 +82,9 @@ __all__ = [
     "plot_gsea_results",
     # bundled files
     "files",
+    # i/o
+    "save",
+    "load",
     # visualisation
     "plot_heatmap",
     "plot_convergence_plots",

@@ -582,6 +582,8 @@ def get_html(
     obs: list = None,
     gsea_sets: dict = None,
     output_path: str = "results/results.html",
+    gene_name_col: str = None,
+    gene_name_from_col: str = None,
     verbose: bool = True,
 ) -> str:
     """Generate a self-contained tabbed HTML report of kaleidocell results.
@@ -637,6 +639,15 @@ def get_html(
         Path for the generated HTML file.  All other output files
         (PDFs, CSVs) are written to the **same directory**.
         Parent directories are created automatically.
+    gene_name_col : str or None
+        Column in ``adata.var`` containing the gene names to display in
+        the report (e.g. ``"gene_name"`` for HGNC symbols when the MP
+        gene names are Ensembl IDs).  When *None* gene names are shown
+        as stored in *results_mp*.
+    gene_name_from_col : str or None
+        Column in ``adata.var`` whose values match the current gene names
+        in *results_mp*.  Only used when *gene_name_col* is set.  When
+        *None* the current names are matched against ``adata.var.index``.
     verbose : bool, default True
         Print progress messages and a summary of written files.
 
@@ -685,6 +696,16 @@ def get_html(
     ...     gsea_sets={"KEGG": "/path/to/kegg.gmt"},
     ... )
     """
+    # Optionally translate gene names before rendering
+    if gene_name_col is not None:
+        from .consensus import translate_gene_names
+        results_mp = translate_gene_names(
+            results_mp, adata,
+            to_col=gene_name_col,
+            from_col=gene_name_from_col,
+            verbose=verbose,
+        )
+
     # Resolve paths — if output_path has no .html extension, treat it as a
     # directory and place results.html inside it.
     gmt_map: dict[str, str] = gsea_sets if gsea_sets is not None else _DEFAULT_GMT

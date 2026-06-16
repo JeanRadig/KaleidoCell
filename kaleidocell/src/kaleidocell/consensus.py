@@ -1055,6 +1055,113 @@ def find_optimal_n_mp(
 
 
 # ---------------------------------------------------------------------------
+# Gene-name translation
+# ---------------------------------------------------------------------------
+
+
+def translate_gene_names(
+    results_mp: dict,
+    adata,
+    to_col: str,
+    from_col: str = None,
+    verbose: bool = True,
+) -> dict:
+    """Translate gene names in *results_mp* using a mapping from ``adata.var``.
+
+    Replaces the gene-name index of every MP's gene-weight Series
+    (``results_mp["mp_dict"]``) and the row index of ``results_mp["mp_df"]``
+    with the target naming convention.  Genes not found in the mapping are
+    kept under their original name.
+
+    Parameters
+    ----------
+    results_mp : dict
+        Output of :func:`derive_nmf_metaprograms`.
+    adata : AnnData
+        Dataset whose ``var`` table provides the gene name mapping.
+    to_col : str
+        Column in ``adata.var`` containing the **target** gene names
+        (e.g. ``"gene_name"`` for HGNC symbols).
+    from_col : str or None
+        Column in ``adata.var`` whose values match the **current** gene
+        names stored in *results_mp*.  When *None* (default), the current
+        names are matched against ``adata.var.index``.
+    verbose : bool, default True
+        Print a summary of how many genes were successfully translated.
+
+    Returns
+    -------
+    dict
+        Deep copy of *results_mp* with gene names translated.
+
+    Examples
+    --------
+    Translate Ensembl IDs (stored in the index of adata.var) to HGNC
+    symbols stored in ``adata.var["gene_name"]``:
+
+    >>> results_mp_symbols = kaleidocell.translate_gene_names(
+    ...     results_mp, adata, to_col="gene_name"
+    ... )
+
+    Translate between two non-index columns:
+
+    >>> results_mp_symbols = kaleidocell.translate_gene_names(
+    ...     results_mp, adata,
+    ...     from_col="ensembl_id",
+    ...     to_col="gene_name",
+    ... )
+    """
+    import copy
+
+    if to_col not in adata.var.columns:
+        raise ValueError(
+            f"'{to_col}' not found in adata.var.columns. "
+            f"Available: {list(adata.var.columns)}"
+        )
+    if from_col is not None and from_col not in adata.var.columns:
+        raise ValueError(
+            f"'{from_col}' not found in adata.var.columns. "
+            f"Available: {list(adata.var.columns)}"
+        )
+
+    if from_col is None:
+        mapping = adata.var[to_col].to_dict()          # index → to_col
+    else:
+        mapping = dict(zip(adata.var[from_col], adata.var[to_col]))
+
+    result = copy.deepcopy(results_mp)
+
+    n_total = 0
+    n_mapped = 0
+
+    new_mp_dict = {}
+    for mp_name, series in result["mp_dict"].items():
+        new_idx = []
+        for g in series.index:
+            n_total += 1
+            if g in mapping:
+                new_idx.append(mapping[g])
+                n_mapped += 1
+            else:
+                new_idx.append(g)
+        series.index = new_idx
+        new_mp_dict[mp_name] = series
+    result["mp_dict"] = new_mp_dict
+
+    if "mp_df" in result and result["mp_df"] is not None:
+        result["mp_df"].index = [mapping.get(g, g) for g in result["mp_df"].index]
+
+    if verbose:
+        n_unmapped = n_total - n_mapped
+        print(
+            f"Translated {n_mapped}/{n_total} gene names to '{to_col}'"
+            + (f" ({n_unmapped} kept as-is — not found in adata.var)." if n_unmapped else ".")
+        )
+
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Threshold-based filtering
 # ---------------------------------------------------------------------------
 
